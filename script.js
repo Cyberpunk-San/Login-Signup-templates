@@ -5,7 +5,9 @@ const templateFolders = [
     "Aerospace-Prog",
     "Amit Raj Sharm",
     "Aniruddha Dwivedi",
+    "Ankit_nonsense3",
     "Anuradha",
+    "Archisman Nath Choudhury",
     "Aurora-Glass-Auth",
     "Avinash",
     "Ayush",
@@ -13,6 +15,7 @@ const templateFolders = [
     "Bootsnipp",
     "Card Flip",
     "Chanakya",
+    "Chinmay",
     "Chitraxi Porwal",
     "chatfly",
     "CodePenTemplate-1",
@@ -43,6 +46,7 @@ const templateFolders = [
     "Kartik Tripathi",
     "karthik-srivathsa-05",
     "Khushi",
+    "khushi-batra",
     "Kruti Amrutiya",
     "Minaal",
     "Modern Animated Template",
@@ -54,9 +58,12 @@ const templateFolders = [
     "Prachi",
     "Pranilash",
     "RajdeepSingh",
+    "Rohan",
+    "Ruthwik",
     "Sahil-Kumar",
     "samim29",
     "SaurabhMishra(edtech+ecommerce)",
+    "Shreya-Modern-Login-Signup",
     "shivaram",
     "SohamPadalkar",
     "Split-Screen-Dark-Shikha",
@@ -64,9 +71,10 @@ const templateFolders = [
     "Tech Zero",
     "Template 1",
     "Template 2",
-    "VedantTapkir"
+    "VedantTapkir",
+    "YashSavalkar",
+    "Yash_Savalkar"
 ];
-
 
 // A list of only the templates that were working.
 const workingTemplates = [
@@ -115,7 +123,9 @@ const workingTemplates = [
     "Tech Zero",
     "Template 1",
     "Template 2"
-]
+];
+
+
 
 //container element from the HTML
 const cardContainer = document.getElementById("card-container");
