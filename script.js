@@ -254,6 +254,14 @@ if (popup) {
       if (controInfo) controInfo.focus({ preventScroll: true });
     }
   });
+
+  // Close popup with ESC key
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !popup.hidden) {
+      popup.hidden = true;
+      if (controInfo) controInfo.focus({ preventScroll: true });
+    }
+  });
 }
 
 // Scroll to top function
