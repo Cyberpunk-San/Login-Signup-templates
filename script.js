@@ -190,12 +190,8 @@ const workingTemplates = [
 //container element from the HTML
 const cardContainer = document.getElementById("card-container");
 
-// Log template details
-console.log('🎨 JwelSrivastava_Form Template Details:', templateDetails["JwelSrivastava_Form"]);
-
 // Loop through each folder name and creating a card for it
 templateFolders.forEach((folderName) => {
-  console.log('Creating card for:', folderName);
   // Create the HTML elements for the card
   const card = document.createElement("a");
   card.classList.add("template-card");
