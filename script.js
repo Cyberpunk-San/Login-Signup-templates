@@ -1,3 +1,14 @@
+/*
+Accessibility note (2025-10-27):
+- Improved the "How to contribute" dialog for keyboard and screen reader users.
+- Replaced non-focusable close <span> with a <button>.
+- Trigger now exposes aria-expanded and aria-controls; dialog has tabindex="-1".
+- Script manages focus (save/restore), Esc to close, Tab trapping, and overlay click.
+
+Manual test: open index.html, Tab to the trigger, Enter to open, verify focus moves inside, Tab cycles,
+Esc closes and restores focus to trigger.
+*/
+
 //A list of all the template folder names.
 const templateFolders = [
   "Ankit_nonsense3",
@@ -5,6 +16,7 @@ const templateFolders = [
   "Aerospace-Prog",
   "Abhinav Shukla",
   "Amit Raj Sharm",
+  "JwelSrivastava_Form",
   "Aniruddha Dwivedi",
   "Archisman Nath Choudhury",
   "Aurora-Glass-Auth",
@@ -69,46 +81,18 @@ const templateFolders = [
   "Ivan Grozdic",
   "Himanshu",
   "Janavi-Pandole",
+  "karthik-srivathsa-05",
   "Modern Animated Template",
   "Modern-Glassmorphic-Login",
+  "Neon-Cyberpunk-Login",
   "Nitin",
   "SaurabhMishra(edtech+ecommerce)",
-  "shivaram",
+  "Shivaram",
   "SohamPadalkar",
   "Split-Screen-Dark-Shikha",
+  "SrushtiThombre",
   "Tech Zero",
   "Template 1",
-  "shivaram",
-    "Abhinav Shukla",
-    "Amit Raj Sharm",
-    "Anuradha",
-    "Avinash",
-    "Ayush",
-    "Baveja Template",
-    "Bootsnipp",
-    "Chanakya",
-    "CodePenTemplate-1",
-    "Coding Nepal",
-    "colorlib Template",
-    "Dev-Portal-Shikha",
-    "Dhruva Bhat",
-    "Foolish Developer",
-    "Ivan Grozdic",
-    "Himanshu",
-    "Janavi-Pandole",
-    "karthik-srivathsa-05",
-    "Modern Animated Template",
-    "Modern-Glassmorphic-Login",
-    "Neon-Cyberpunk-Login",
-    "Nitin",
-    "SaurabhMishra(edtech+ecommerce)",
-  "shivaram",
-  "Shreya-Modern-Login-Signup",
-    "SohamPadalkar",
-    "Split-Screen-Dark-Shikha",
-    "SrushtiThombre",
-    "Tech Zero",
-    "Template 1",
   "Template 2",
   "VedantTapkir",
   "OnkarJondhale",
@@ -116,24 +100,38 @@ const templateFolders = [
   "Rohan",
   "Kanishka",
   "Ishika Singh Rajput",
-  "HarshalBhosale",
-    "Ishika Singh Rajput",
-    "Harsh-Login-Form",
-    "YashSavalkar",
-    "Yash_Savalkar"
-
+  "Harsh-Login-Form",
 ];
+
+// Template details with descriptions and features
+const templateDetails = {
+  "JwelSrivastava_Form": {
+    title: "JwelSrivastava Form",
+    description: "Modern Glassmorphism Login Form",
+    features: ["Glassmorphism Design", "Real-time Validation", "Password Toggle", "Social Login", "Responsive Design"],
+    author: "Jwel Srivastava",
+    technologies: ["HTML5", "CSS3", "Vanilla JavaScript"],
+    category: "Modern",
+    difficulty: "Intermediate"
+  }
+};
 
 // A list of only the templates that were working.
 const workingTemplates = [
   "Ankit_nonsense3",
   "Aerospace-Prog",
   "Aurora-Glass-Auth",
+  "JwelSrivastava_Form",
   "QuantumNeon-Auth",
   "SaurabhMishra(edtech+ecommerce)",
   "CodePenTemplate-1",
   "Bootsnipp",
+  "Anuradha",
   "Ayush",
+  "Parth",
+  "Prachi",
+  "Joyston",
+  "Shivaram",
   "Avinash",
   "Abhinav Shukla",
   "Amit Raj Sharm",
@@ -141,6 +139,7 @@ const workingTemplates = [
   "Chanakya",
   "Chinmay",
   "Chitraxi Porwal",
+  "Jayanta Ghosh",
   "Coding Nepal",
   "colorlib Template",
   "Dhruva Bhat",
@@ -148,14 +147,20 @@ const workingTemplates = [
   "Foolish Developer",
   "Igneel-98",
   "Ivan Grozdic",
+  "Modern-Glassmorphic-Login",
   "Modern Animated Template",
+  "Nitin",
   "Pranilash",
   "Tech Zero",
   "Template 1",
   "Template 2",
   "chatfly",
+  "Himanshu",
+  "HimanshuDubey",
+  "SohamPadalkar",
   "Elango-Kannan-00",
   "Gihan Harindra",
+  "Ishika Singh Rajput",
   "Glassmorphism-adiprem73",
   "Jaswanth-Kumar",
   "Kartik Tripathi",
@@ -177,21 +182,49 @@ const workingTemplates = [
   "SrushtiThombre",
   "OnkarJondhale",
   "Kanishka",
-  "Rohan",
-  "OnkarJondhale",
-  "Kanishka",
- 
-  "HarshalBhosale",
+  "AasthaRai",
+  "AniruddhaDwivedi",
+  "Cursor Following",
 ];
 
 //container element from the HTML
 const cardContainer = document.getElementById("card-container");
 
+// Log template details
+console.log('🎨 JwelSrivastava_Form Template Details:', templateDetails["JwelSrivastava_Form"]);
+
 // Loop through each folder name and creating a card for it
 templateFolders.forEach((folderName) => {
+  console.log('Creating card for:', folderName);
   // Create the HTML elements for the card
   const card = document.createElement("a");
   card.classList.add("template-card");
+
+  // Add special styling for JwelSrivastava_Form
+  if (folderName === "JwelSrivastava_Form") {
+    card.style.cssText += `
+      border: 2px solid #6366f1;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+      position: relative;
+    `;
+
+    // Add "NEW" badge
+    const newBadge = document.createElement("div");
+    newBadge.textContent = "NEW";
+    newBadge.style.cssText = `
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #10b981;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: bold;
+      z-index: 10;
+    `;
+    card.appendChild(newBadge);
+  }
 
   // Special fix for 'Tech Zero' link
   if (folderName === "Tech Zero") {
@@ -214,44 +247,171 @@ templateFolders.forEach((folderName) => {
   const title = document.createElement("h3");
   title.textContent = folderName;
 
-  // Adding the screenshot and title to the card
-  card.appendChild(screenshot);
-  card.appendChild(title);
+  // Add template details if available
+  const details = templateDetails[folderName];
+  if (details) {
+    // Add description
+    const description = document.createElement("p");
+    description.textContent = details.description;
+    description.style.cssText = `
+      font-size: 12px;
+      color: #888;
+      margin: 4px 0;
+      text-align: center;
+    `;
+
+    // Add features badge
+    const featuresDiv = document.createElement("div");
+    featuresDiv.style.cssText = `
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 8px;
+    `;
+
+    details.features.slice(0, 2).forEach(feature => {
+      const badge = document.createElement("span");
+      badge.textContent = feature;
+      badge.style.cssText = `
+        background: #6366f1;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 500;
+      `;
+      featuresDiv.appendChild(badge);
+    });
+
+    // Adding the screenshot, title, description and features to the card
+    card.appendChild(screenshot);
+    card.appendChild(title);
+    card.appendChild(description);
+    card.appendChild(featuresDiv);
+  } else {
+    // Adding the screenshot and title to the card (default)
+    card.appendChild(screenshot);
+    card.appendChild(title);
+  }
 
   // Adding the completed card to the container
   cardContainer.appendChild(card);
 });
 
-// how to contribute info code
+// how to contribute info code (accessibility improvements)
 const controInfo = document.querySelector(".contro-info");
 const popup = document.getElementById("popup");
 const closeBtn = document.querySelector(".close-btn");
 
-// Safety guards in case elements are missing
 if (popup) {
-  // Ensure popup is hidden on load (use the boolean hidden attribute)
+  // ensure hidden on load
   popup.hidden = true;
 
+  // store last focused element so we can restore focus on close
+  let lastFocus = null;
+
+  // utility: get focusable elements inside the dialog
+  const getFocusable = () => {
+    return Array.from(
+      popup.querySelectorAll(
+        'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
+  };
+
+  const openDialog = () => {
+    lastFocus = document.activeElement;
+    popup.hidden = false;
+    popup.setAttribute('aria-hidden', 'false');
+    if (controInfo) controInfo.setAttribute('aria-expanded', 'true');
+
+    // Move focus to the dialog container so screen readers announce it
+    popup.focus({ preventScroll: true });
+
+    // focus first meaningful control (close button or first focusable)
+    const focusables = getFocusable();
+    if (focusables.length) {
+      focusables[0].focus({ preventScroll: true });
+    }
+
+    // add keydown handler for Esc and Tab trapping
+    popup.addEventListener('keydown', handleKeyDown);
+  };
+
+  const closeDialog = () => {
+    popup.hidden = true;
+    popup.setAttribute('aria-hidden', 'true');
+    if (controInfo) controInfo.setAttribute('aria-expanded', 'false');
+    // remove key handler
+    popup.removeEventListener('keydown', handleKeyDown);
+    // restore focus
+    if (lastFocus && typeof lastFocus.focus === 'function') {
+      lastFocus.focus({ preventScroll: true });
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      e.preventDefault();
+      closeDialog();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      // basic focus trap
+      const focusables = getFocusable();
+      if (focusables.length === 0) {
+        e.preventDefault();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  };
+
   if (controInfo) {
-    controInfo.addEventListener("click", () => {
-      popup.hidden = false;
-      // move focus into the dialog for accessibility
-      const firstHeading = popup.querySelector("#popup-title");
-      if (firstHeading) firstHeading.focus({ preventScroll: true });
+    // ensure trigger has proper ARIA attributes (in case markup missing)
+    controInfo.setAttribute('aria-controls', 'popup');
+    controInfo.setAttribute('aria-expanded', controInfo.getAttribute('aria-expanded') || 'false');
+
+    controInfo.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDialog();
+    });
+
+    // allow keyboard activation via Enter/Space (button already handles this, but keep defensive)
+    controInfo.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDialog();
+      }
     });
   }
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      popup.hidden = true;
-      if (controInfo) controInfo.focus({ preventScroll: true });
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeDialog();
     });
   }
 
-  window.addEventListener("click", (e) => {
+  // overlay click (click outside popup-content closes)
+  popup.addEventListener('click', (e) => {
     if (e.target === popup) {
-      popup.hidden = true;
-      if (controInfo) controInfo.focus({ preventScroll: true });
+      closeDialog();
     }
   });
 
@@ -320,6 +480,7 @@ themeToggle.addEventListener("change", function () {
     localStorage.setItem("theme", ""); // When unchecked, it's the default dark mode
   }
 });
+
 
 // --- Search Functionality ---
 const searchInput = document.getElementById("search-input");
