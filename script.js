@@ -172,6 +172,7 @@ const workingTemplates = [
   "Ruthwik",
   "Sahil-Kumar",
   "samim29",
+  "Sansriti Mishra",
   "SaurabhMishra(edtech+ecommerce)",
   "Janavi-Pandole",
   "CodePenTemplate-1",
