@@ -111,6 +111,7 @@ const templateFolders = [
   "Kanishka",
   "Ishika Singh Rajput",
   "Harsh-Login-Form",
+  "shiva-sharma",
 ];
 
 // Template details with descriptions and features
